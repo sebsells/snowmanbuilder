@@ -10,12 +10,16 @@ public class CarrotPlacing : MonoBehaviour
     public CameraMovement cameraMovement;
     public int scoreCounter = 100;
     int scoreModifier = 100;
-    Vector3 carrotTargetPos = new Vector3(0f, 3f, -32f);
-    public Vector3 carrotPoint1 = new Vector3(-1f, 3f, -32f);
-    public Vector3 carrotPoint2 = new Vector3(1f, 3f, -32f);
+    Vector3 carrotTargetPos = new Vector3(0f, 3.8f, 0f);
+    public Vector3 carrotPoint1 = new Vector3(0f, 3.8f, -1f);
+    public Vector3 carrotPoint2 = new Vector3(0f, 3.8f, 1f);
 
     float carrotSpeed = 1f;
     bool isMoving = true;
+
+    private void Start() {
+        carrot.transform.localScale = new Vector3(2f, 2f, 2f);
+    }
 
     // Update is called once per frame
     void Update()
@@ -32,11 +36,11 @@ public class CarrotPlacing : MonoBehaviour
 
         if (isMoving)
         {
-            if(carrot.transform.position.x <= carrotPoint1.x || carrot.transform.position.x >= carrotPoint2.x)
+            if(carrot.transform.position.z <= carrotPoint1.z || carrot.transform.position.z >= carrotPoint2.z)
             {
                 carrotSpeed = -carrotSpeed;
             }
-            carrot.transform.position += new Vector3(carrotSpeed*Time.deltaTime, 0f, 0f);
+            carrot.transform.position += new Vector3(0f, 0f, carrotSpeed * Time.deltaTime);
         }
     }
 
