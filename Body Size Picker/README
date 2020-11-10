@@ -1,0 +1,2 @@
+add this script onto the body that will be changing size.
+under the script component, add the body from the hierarchy into the "sphere" field
