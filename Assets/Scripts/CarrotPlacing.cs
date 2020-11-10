@@ -18,7 +18,7 @@ public class CarrotPlacing : MonoBehaviour
     bool isMoving = true;
 
     private void Start() {
-        carrot.transform.localScale = new Vector3(2f, 2f, 2f);
+        carrot.transform.localScale = new Vector3(3f, 3f, 3f);
     }
 
     // Update is called once per frame
