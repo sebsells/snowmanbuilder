@@ -5,6 +5,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class CameraMovement : MonoBehaviour
 {
+    public int gameCount = 4;
     public Camera mainCamera;
     public GameObject snowManEmpty;
     public GameObject[] initializeObjects = new GameObject[10];
@@ -18,6 +19,9 @@ public class CameraMovement : MonoBehaviour
     {
         initializeObjects[positionCount].SetActive(false);
         positionCount += 1;
+        if (positionCount >= gameCount) {
+            return;
+        }
         mainCamera.transform.position = cameraPositions[positionCount].position;
         snowManEmpty.transform.position = snowManPositions[positionCount].position;
         initializeObjects[positionCount].SetActive(true);

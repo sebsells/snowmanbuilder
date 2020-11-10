@@ -10,9 +10,9 @@ public class CarrotPlacing : MonoBehaviour
     public CameraMovement cameraMovement;
     public int scoreCounter = 100;
     int scoreModifier = 100;
-    Vector3 carrotTargetPos = new Vector3(0f, 3.8f, 0f);
-    public Vector3 carrotPoint1 = new Vector3(0f, 3.8f, -1f);
-    public Vector3 carrotPoint2 = new Vector3(0f, 3.8f, 1f);
+    Vector3 carrotTargetPos = new Vector3(75f, 18.8f, 0f);
+    public Vector3 carrotPoint1 = new Vector3(75f, 18.8f, -1f);
+    public Vector3 carrotPoint2 = new Vector3(75f, 18.8f, 1f);
 
     float carrotSpeed = 1f;
     bool isMoving = true;
