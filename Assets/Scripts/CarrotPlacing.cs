@@ -5,19 +5,13 @@ using UnityEngine;
 public class CarrotPlacing : MonoBehaviour
 {
     public int scoreCounter = 100;
-    int scoreModifier = 1;
-    Vector3 carrotTargetPos = new Vector3(0f, 0f, 0f);
-    Vector3 carrotPoint1 = new Vector3(0f, 0f, 0f);
-    Vector3 carrotPoint2 = new Vector3(0f, 0f, 0f);
+    int scoreModifier = 100;
+    Vector3 carrotTargetPos = new Vector3(0f, 3f, -32f);
+    public Vector3 carrotPoint1 = new Vector3(-1f, 3f, -32f);
+    public Vector3 carrotPoint2 = new Vector3(1f, 3f, -32f);
 
-    float carrotSpeed = 1;
+    float carrotSpeed = 1f;
     bool isMoving = true;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -30,19 +24,17 @@ public class CarrotPlacing : MonoBehaviour
 
         if (isMoving)
         {
-            if(transform.position == carrotPoint1 || transform.position == carrotPoint2)
+            if(transform.position.x <= carrotPoint1.x || transform.position.x >= carrotPoint2.x)
             {
-                Vector3 tempVector = carrotPoint1;
-                carrotPoint1 = carrotPoint2;
-                carrotPoint2 = tempVector;
+                carrotSpeed = -carrotSpeed;
             }
-            transform.position = Vector3.MoveTowards(carrotPoint1, carrotPoint2, carrotSpeed);
+            transform.position += new Vector3(carrotSpeed*Time.deltaTime, 0f, 0f);
         }
     }
 
     void ScoreCalculator()
     {
-        int scoreRemoval = (int)Vector3.Distance(transform.position, carrotTargetPos) * scoreModifier;
-        scoreCounter -= scoreRemoval;
+        float scoreRemoval = Vector3.Distance(transform.position, carrotTargetPos) * scoreModifier;
+        scoreCounter -= (int)scoreRemoval;
     }
 }
