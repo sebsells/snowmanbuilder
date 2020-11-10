@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CarrotPlacing : MonoBehaviour
 {
+    [SerializeField]
+    GameObject carrot;
+
+    public CameraMovement cameraMovement;
     public int scoreCounter = 100;
     int scoreModifier = 100;
     Vector3 carrotTargetPos = new Vector3(0f, 3f, -32f);
@@ -21,20 +25,25 @@ public class CarrotPlacing : MonoBehaviour
             isMoving = false;
             ScoreCalculator();
         }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            cameraMovement.NextGame();
+        }
 
         if (isMoving)
         {
-            if(transform.position.x <= carrotPoint1.x || transform.position.x >= carrotPoint2.x)
+            if(carrot.transform.position.x <= carrotPoint1.x || carrot.transform.position.x >= carrotPoint2.x)
             {
                 carrotSpeed = -carrotSpeed;
             }
-            transform.position += new Vector3(carrotSpeed*Time.deltaTime, 0f, 0f);
+            carrot.transform.position += new Vector3(carrotSpeed*Time.deltaTime, 0f, 0f);
         }
     }
 
     void ScoreCalculator()
     {
-        float scoreRemoval = Vector3.Distance(transform.position, carrotTargetPos) * scoreModifier;
+        float scoreRemoval = Vector3.Distance(carrot.transform.position, carrotTargetPos) * scoreModifier;
         scoreCounter -= (int)scoreRemoval;
+        cameraMovement.score += scoreCounter;
     }
 }
